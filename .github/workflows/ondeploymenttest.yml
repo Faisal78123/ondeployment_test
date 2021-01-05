@@ -1,0 +1,13 @@
+name: ondeploymenttest
+on: deployment
+
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+    environment:
+      name: ${{ github.event.deployment.environment }}
+    steps:
+      - name: Deploy to ${{ github.event.deployment.environment }}
+        env:
+          FOO: ${{ secrets.FOO }}
+        run: echo "Deploying..."
